@@ -39,8 +39,10 @@
                           <tr>
                               <th>Thumbnail</th>
                               <th>Product Name</th>
-                              <th>Quantity</th>
+                              <th>Qty</th>
                               <th>Price</th>
+                              <th>Discount</th>
+                              <th>Status</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -49,17 +51,54 @@
                               
                           
                           <tr>
-                             <td width="50px"><img src="{{ asset($row->product_thumbnail) }}" alt="" width="50px" height="50px"></td>
+                             <td><img src="{{ asset($row->product_thumbnail) }}" alt="" width="50px" height="50px"></td>
                              <td width="40%">{{ $row->product_name_ind }}</td>
                               <td width="10px">{{ $row->product_qty }}</td>
-                              <td> <p>Rp. {{ $row->selling_price }}</p></td>
-                              <td>
+                              <td> {{ $row->selling_price }}</td>
+                              <td> 
+                              
+                                @if($row->discount_price == NULL)
+                                <span class="badge badge-pill badge-danger">No Discount</span>
+                         
+                                @else
+                                @php
+                                $amount = $row->selling_price - $row->discount_price;
+                                $discount = $amount/$row->selling_price * 100;
+                                @endphp
+                                    <span class="badge badge-pill badge-danger">{{ round($discount)  }} %</span>
+                         
+                                @endif
+                              
+                              </td>
+                              <td> 
+                                
+                                @if ($row->status == 1)
+                                    <span class="badge badge-pill badge-success">Active</span>
+                                @else
+                                <span class="badge badge-pill badge-danger">InActive</span>
+                                @endif
+                              
+                              </td>
+                              <td width="30%">
+                                <a href="{{ route('detail.product', $row->id) }}" class="btn btn-dark btn-sm"  title="Detail Data">
+                                  <i class="fa fa-eye"></i>
+                                </a> 
                                    <a href="{{ route('edit.product', $row->id) }}" class="btn btn-info btn-sm"  title="Edit Data">
                                     <i class="fa fa-pencil"></i>
                                   </a> 
-                                    <a href="{{ route('delete.subsubcategory', $row->id) }}" id="delete" data-name="{{ $row->product_name_ind }}" class="btn btn-danger btn-sm" title="Delete Data">
+                                    <a href="{{ route('delete.product', $row->id) }}" id="delete" data-name="{{ $row->product_name_ind }}" class="btn btn-danger btn-sm" title="Delete Data">
                                       <i class="fa fa-trash"></i>
+                                    </a>
+
+                                    @if ($row->status == 1)
+                                    <a href="{{ route('inactive.product', $row->id) }}"  class="btn btn-warning btn-sm" title="InActive Now">
+                                      <i class="fa fa-arrow-down"></i>
                                     </a> 
+                                @else
+                                <a href="{{ route('active.product', $row->id) }}" class="btn btn-success btn-sm" title=" Active Now">
+                                  <i class="fa fa-arrow-up"></i>
+                                </a> 
+                                @endif
                                
                               </td>
                               

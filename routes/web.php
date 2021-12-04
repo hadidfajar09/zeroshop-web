@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Support\Facades\Auth;
@@ -102,9 +103,20 @@ Route::prefix('product')->group(function(){
     Route::post('/store',[ProductController::class, 'productStore'])->name('store.product'); 
     Route::get('/view',[ProductController::class, 'productView'])->name('all.product');  
     Route::get('/edit/{id}',[ProductController::class, 'productEdit'])->name('edit.product'); 
+    Route::get('/detail/{id}',[ProductController::class, 'productDetail'])->name('detail.product'); 
+    Route::get('/delete/{id}',[ProductController::class, 'productDelete'])->name('delete.product'); 
     Route::post('/data/update',[ProductController::class, 'productDataUpdate'])->name('update.product'); 
     Route::post('/multi/update',[ProductController::class, 'productMultiUpdate'])->name('update.multi'); 
     Route::post('/thumbnail/update',[ProductController::class, 'productThumbnailUpdate'])->name('update.thumbnail'); 
     Route::get('/multi/delete/{id}',[ProductController::class, 'productMultiDelete'])->name('delete.multi'); 
+    Route::get('/inactive/{id}',[ProductController::class, 'productInactive'])->name('inactive.product'); 
+    Route::get('/active/{id}',[ProductController::class, 'productActive'])->name('active.product'); 
+});
+
+
+// //admin product route
+Route::prefix('slider')->group(function(){
+    Route::get('/view',[SliderController::class, 'sliderView'])->name('all.slider');  
+   
 });
    

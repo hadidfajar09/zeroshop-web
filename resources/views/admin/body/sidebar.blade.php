@@ -70,6 +70,20 @@
             <li class="{{ ($route == 'all.product')? 'active':'' }}"><a href="{{ route('all.product') }}"><i class="ti-more"></i>Manage Product</a></li>
           </ul>
         </li> 		  
+
+        <li class="treeview {{ ($prefix == '/slider')? 'active':'' }}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Sliders</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'add.product')? 'active':'' }}"><a href="{{ route('add.product') }}"><i class="ti-more"></i>Add Product</a></li>
+            <li class="{{ ($route == 'all.slider')? 'active':'' }}"><a href="{{ route('all.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
+          </ul>
+        </li> 		  
 		 
         <li class="header nav-small-cap">User Interface</li>
 		  

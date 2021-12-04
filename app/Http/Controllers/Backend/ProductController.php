@@ -119,6 +119,20 @@ class ProductController extends Controller
         return view('backend.product.edit', compact('products','brands','subsubcategory', 'categories','multiImgs'));
     }
 
+    public function productDetail($id)
+    {   
+
+        $multiImgs = MultiImg::where('product_id',$id)->get();
+
+        $categories = Category::orderBy('category_name_en','asc')->get();
+        $brands = Brand::orderBy('brand_name','asc')->get();
+        // $subcategory = SubCategory::orderBy('subcategory_name_en','asc')->get();
+        $subsubcategory = SubSubCategory::orderBy('subsubcategory_name_en','asc')->get();
+
+        $products = Product::findOrFail($id);
+        return view('backend.product.detail', compact('products','brands','subsubcategory', 'categories','multiImgs'));
+    }
+
     public function productDataUpdate(Request $request)
     {
 
@@ -173,8 +187,7 @@ class ProductController extends Controller
 
         foreach ($multi as $id => $img) {
             $img_del = MultiImg::findOrFail($id);
-            if($img_del == $multi){
-                unlink($img_del->photo_name);
+            if($img_del == NULL){
 
                 $name_multi = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
                 Image::make($img)->resize(917,1000)->save('upload/product/multi/'.$name_multi);
@@ -185,7 +198,9 @@ class ProductController extends Controller
                     'updated_at' => Carbon::now(),
                 ]);
             }else{
-                
+
+                unlink($img_del->photo_name);
+
                 $name_multi = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
                 Image::make($img)->resize(917,1000)->save('upload/product/multi/'.$name_multi);
                 $upload_path = 'upload/product/multi/'.$name_multi;
@@ -236,6 +251,62 @@ class ProductController extends Controller
         $old = MultiImg::findOrFail($id);
 
         unlink($old->photo_name);
+
+        MultiImg::findOrFail($id)->delete();
+
+        $notif = array(
+            'message' => 'Product Successfully with Multi Deleted',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notif);
+    } 
+
+    public function productInactive($id)
+    {
+         Product::findOrFail($id)->update([
+             'status' => 0
+         ]);
+
+         $notif = array(
+            'message' => 'Product Now Inactive',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notif);
+    }
+
+    public function productActive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 1
+        ]);
+
+        $notif = array(
+            'message' => 'Product Now Active',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notif);
+    }
+
+    public function productDelete($id)
+    {
+        $product = Product::findOrFail($id);
+
+        unlink($product->product_thumbnail);
+
+        Product::findOrFail($id)->delete();
+
+        $images = MultiImg::where('product_id', $id)->get();
+
+        foreach ($images as $img) {
+            unlink($img->photo_name);
+            MultiImg::where('product_id',$id)->delete();
+        }
+
+        $notif = array(
+            'message' => 'Product Successfully Deleted',
+            'alert-type' => 'error'
+        );
+        return redirect()->back()->with($notif);
     }
 
 }
