@@ -64,8 +64,9 @@
                                 @php
                                 $amount = $row->selling_price - $row->discount_price;
                                 $discount = $amount/$row->selling_price * 100;
+                                $hasil = 100 - $discount;
                                 @endphp
-                                    <span class="badge badge-pill badge-danger">{{ round($discount)  }} %</span>
+                                    <span class="badge badge-pill badge-danger">{{ round($hasil)  }} %</span>
                          
                                 @endif
                               

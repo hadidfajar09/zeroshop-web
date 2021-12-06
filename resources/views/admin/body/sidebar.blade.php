@@ -80,7 +80,6 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ ($route == 'add.product')? 'active':'' }}"><a href="{{ route('add.product') }}"><i class="ti-more"></i>Add Product</a></li>
             <li class="{{ ($route == 'all.slider')? 'active':'' }}"><a href="{{ route('all.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
           </ul>
         </li> 		  

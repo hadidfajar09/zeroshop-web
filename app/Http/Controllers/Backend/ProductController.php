@@ -89,7 +89,7 @@ class ProductController extends Controller
         foreach ($multi as $img ) {
             $name_multi = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
             Image::make($img)->resize(917,1000)->save('upload/product/multi/'.$name_multi);
-            $upload_path = 'upload/product/multi/'.$name_gen;
+            $upload_path = 'upload/product/multi/'.$name_multi;
 
             MultiImg::insert([
                 'product_id' => $product_id,

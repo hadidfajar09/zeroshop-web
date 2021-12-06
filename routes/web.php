@@ -117,6 +117,11 @@ Route::prefix('product')->group(function(){
 // //admin product route
 Route::prefix('slider')->group(function(){
     Route::get('/view',[SliderController::class, 'sliderView'])->name('all.slider');  
-   
+    Route::post('/store',[SliderController::class, 'sliderStore'])->name('store.slider'); 
+    Route::get('/edit/{id}',[SliderController::class, 'sliderEdit'])->name('edit.slider'); 
+    Route::post('/update',[SliderController::class, 'sliderUpdate'])->name('update.slider'); 
+    Route::get('/delete/{id}',[SliderController::class, 'sliderDelete'])->name('delete.slider'); 
+    Route::get('/inactive/{id}',[SliderController::class, 'sliderInactive'])->name('inactive.slider'); 
+    Route::get('/active/{id}',[SliderController::class, 'sliderActive'])->name('active.slider'); 
 });
    
