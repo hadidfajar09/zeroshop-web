@@ -58,7 +58,7 @@
                               <td> 
                               
                                 @if($row->discount_price == NULL)
-                                <span class="badge badge-pill badge-danger">No Discount</span>
+                                <span class="badge badge-pill badge-dark">No Discount</span>
                          
                                 @else
                                 @php

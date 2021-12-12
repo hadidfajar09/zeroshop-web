@@ -131,3 +131,15 @@ Route::prefix('slider')->group(function(){
     Route::get('/active/{id}',[SliderController::class, 'sliderActive'])->name('active.slider'); 
 });
    
+
+//frontend router
+// language
+Route::get('/lang/indo',[IndexController::class, 'indoLanguage'])->name('indo.lang');  
+Route::get('/lang/en',[IndexController::class, 'englishLanguage'])->name('en.lang');  
+
+
+//product detail URL
+Route::get('/product/details/{id}/{slug}',[IndexController::class, 'productDetails']);  
+
+//Product Tag
+Route::get('/product/tag/{tag}',[IndexController::class, 'productTag']);  

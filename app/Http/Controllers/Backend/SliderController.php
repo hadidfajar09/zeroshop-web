@@ -51,6 +51,10 @@ class SliderController extends Controller
     public function sliderUpdate(Request $request )
     {
 
+        $validasi = $request->validate([
+            'slider_img' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+        ]);
+
         $slider_id = $request->id;
         $old_img = $request->oldimage;
 
