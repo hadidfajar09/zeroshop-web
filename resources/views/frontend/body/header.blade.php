@@ -6,8 +6,8 @@
         <div class="header-top-inner">
           <div class="cnt-account">
             <ul class="list-unstyled">
-              <li><a href="#"><i class="icon fa fa-heart"></i>Wishlist</a></li>
-              <li><a href="#"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
+              <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
+              <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
               <li><a href="#"><i class="icon fa fa-check"></i>Checkout</a></li>
               <li>
 
@@ -98,29 +98,29 @@
             <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
               <div class="items-cart-inner">
                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
-                <div class="basket-item-count"><span class="count">2</span></div>
-                <div class="total-price-basket"> <span class="lbl">cart -</span> <span class="total-price"> <span class="sign">$</span><span class="value">600.00</span> </span> </div>
+                <div class="basket-item-count"><span class="count" id="cardQty"> </span></div>
+                <div class="total-price-basket"> <span class="lbl"></span> <span class="total-price"> <span class="sign">Rp.</span><span class="value" id="cartSubTotal"> </span> </span> </div>
               </div>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <div class="cart-item product-summary">
-                    <div class="row">
-                      <div class="col-xs-4">
-                        <div class="image"> <a href="detail.html"><img src="{{ asset('assets/images/cart.jpg') }}" alt=""></a> </div>
-                      </div>
-                      <div class="col-xs-7">
-                        <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-                        <div class="price">$600.00</div>
-                      </div>
-                      <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
-                    </div>
+                  
+
+                  {{-- MINI CART AJAX --}}
+
+                  <div id="miniCart">
+
                   </div>
-                  <!-- /.cart-item -->
-                  <div class="clearfix"></div>
-                  <hr>
+
+
+                  {{-- MINI CART AJAX --}}
+
+
+
+
+
                   <div class="clearfix cart-total">
-                    <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>$600.00</span> </div>
+                    <div class="pull-right"> <span class="text">Sub Total : Rp.</span><span class='price' id="cartSubTotal"> </span> </div>
                     <div class="clearfix"></div>
                     <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a> </div>
                   <!-- /.cart-total--> 
@@ -171,15 +171,17 @@
                         <div class="yamm-content">
                           <div class="row">
                             @php
-                                  $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name_ind','asc')->get();
+                              $subcategories = App\Models\SubCategory::where('category_id',$category->id)->orderBy('subcategory_name_ind','asc')->get();
                             @endphp
 
                             @foreach ($subcategories as $subcategory)
                                 
                             <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
+                              <a href="{{ url('subcategory/product/'.$subcategory->id.'/'. $subcategory->subcategory_slug_ind) }}">
                               <h2 class="title">
                                 @if (session()->get('lang') == 'en') {{ $subcategory->subcategory_name_en }} @else {{ $subcategory->subcategory_name_ind }} @endif
                               </h2>
+                            </a>
 
 
                                                  
@@ -189,7 +191,7 @@
                               <ul class="links">
                                 
                                 @foreach ($subsubcategories as $subsubcategory)
-                                <li><a href="#">
+                                <li><a href="{{ url('subsubcategory/product/'.$subsubcategory->id.'/'. $subsubcategory->subsubcategory_slug_ind) }}">
                                   @if (session()->get('lang') == 'en') {{ $subsubcategory->subsubcategory_name_en }} @else {{ $subsubcategory->subsubcategory_name_ind }} @endif 
                                 </a></li>    
                                 @endforeach

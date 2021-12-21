@@ -7,8 +7,10 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Frontend\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -137,9 +139,50 @@ Route::prefix('slider')->group(function(){
 Route::get('/lang/indo',[IndexController::class, 'indoLanguage'])->name('indo.lang');  
 Route::get('/lang/en',[IndexController::class, 'englishLanguage'])->name('en.lang');  
 
-
 //product detail URL
 Route::get('/product/details/{id}/{slug}',[IndexController::class, 'productDetails']);  
 
+//subCategory  URL
+Route::get('/subcategory/product/{id}/{slug}',[IndexController::class, 'subCatProduct']);  
+
+//subCategory  URL
+Route::get('/subsubcategory/product/{id}/{slug}',[IndexController::class, 'subSubCatProduct']);  
+
 //Product Tag
 Route::get('/product/tag/{tag}',[IndexController::class, 'productTag']);  
+
+//Product view modal ajax
+Route::get('/product/view/modal/{id}',[IndexController::class, 'productViewAjax']);  
+
+//Product Cart modal ajax
+Route::post('/cart/data/store/{id}',[CartController::class, 'productCartStore']);
+
+//Product MIni Cart  ajax
+Route::get('/product/mini/cart',[CartController::class, 'productMiniCart']);  
+
+//Product MIni Cart DELETE ajax
+Route::get('/minicart/product-remove/{rowId}',[CartController::class, 'removeMiniCart']);  
+
+//Product MIni Cart DELETE ajax
+Route::post('/add-to-wishlist/{product_id}',[CartController::class, 'addToWishlist']);  
+    
+
+//Product Wishlist
+Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' => 'User'], function(){
+    //wishlist
+    Route::get('/wishlist',[WishlistController::class, 'viewWistlist'])->name('wishlist');  
+    Route::get('/get-wishlist-product',[WishlistController::class, 'listWishlist']);  
+    Route::get('/wishlist/product-remove/{id}',[WishlistController::class, 'removeWishlist']);  
+});
+//mycart
+Route::get('/mycart',[CartController::class, 'viewMycart'])->name('mycart');  
+Route::get('/user/get-mycart-product',[CartController::class, 'listMycart']);  
+Route::get('/user/cart/product-remove/{id}',[CartController::class, 'removeCart']);  
+
+Route::get('/cart/increment/{rowId}',[CartController::class, 'cartIncrement']);  
+Route::get('/cart/decrement/{rowId}',[CartController::class, 'cartDecrement']);  
+
+
+ 
+
+

@@ -1,18 +1,18 @@
 @extends('frontend.main_master')
 
 @section('title')
-Tag '{{ $tags }}'
+{{$subsubcat->subsubcategory_name_ind}}
+
 @endsection
 
 @section('content')
-
 <div class="breadcrumb">
     <div class="container">
       <div class="breadcrumb-inner">
         <ul class="list-inline list-unstyled">
           <li><a href="{{ url('/') }}">Home</a></li>
-          <li>Tag</li>
-          <li class='active'>{{ $tags }}</li>
+          <li>SubSubCategory</li>
+          <li class='active'>{{$subsubcat->subsubcategory_name_ind}}</li>
         </ul>
       </div>
       <!-- /.breadcrumb-inner --> 

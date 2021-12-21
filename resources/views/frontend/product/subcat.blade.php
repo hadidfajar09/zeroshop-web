@@ -1,7 +1,8 @@
 @extends('frontend.main_master')
 
 @section('title')
-Tag '{{ $tags }}'
+@if (session()->get('lang') == 'en') {{$subcat->subcategory_name_en}} @else {{$subcat->subcategory_name_ind}} @endif  
+  
 @endsection
 
 @section('content')
@@ -11,8 +12,10 @@ Tag '{{ $tags }}'
       <div class="breadcrumb-inner">
         <ul class="list-inline list-unstyled">
           <li><a href="{{ url('/') }}">Home</a></li>
-          <li>Tag</li>
-          <li class='active'>{{ $tags }}</li>
+          <li>SubCategory</li>
+          <li class='active'>
+            @if (session()->get('lang') == 'en') {{$subcat->subcategory_name_en}} @else {{$subcat->subcategory_name_ind}} @endif  
+          </li>
         </ul>
       </div>
       <!-- /.breadcrumb-inner --> 
