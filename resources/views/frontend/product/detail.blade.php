@@ -264,7 +264,7 @@
 							            </div>
 									</div>
 
-									<input type="hidden" id="product_id" value="{{ $products->id }}" min="1">
+									<input type="hidden" id="product_id" value="{{ $products->id }}">
 
 									<div class="col-sm-7">
 										<button type="submit" class="btn btn-primary" onclick="addToCart()"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>

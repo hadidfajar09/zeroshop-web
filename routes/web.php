@@ -4,8 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\CartController;
 use Illuminate\Support\Facades\Route;
@@ -132,7 +134,37 @@ Route::prefix('slider')->group(function(){
     Route::get('/inactive/{id}',[SliderController::class, 'sliderInactive'])->name('inactive.slider'); 
     Route::get('/active/{id}',[SliderController::class, 'sliderActive'])->name('active.slider'); 
 });
+
+Route::prefix('coupon')->group(function(){
+    Route::get('/view',[CouponController::class, 'couponView'])->name('all.coupon');  
+    Route::post('/store',[CouponController::class, 'couponStore'])->name('store.coupon'); 
+    Route::get('/edit/{id}',[CouponController::class, 'couponEdit'])->name('edit.coupon'); 
+    Route::post('/update',[CouponController::class, 'couponUpdate'])->name('update.coupon'); 
+    Route::get('/delete/{id}',[CouponController::class, 'couponDelete'])->name('delete.coupon'); 
+});
    
+Route::prefix('shipping')->group(function(){
+    Route::get('/division/view',[ShippingAreaController::class, 'shippingView'])->name('all.shipping');  
+    Route::post('/division/store',[ShippingAreaController::class, 'shippingStore'])->name('store.shipping'); 
+    Route::get('/division/edit/{id}',[ShippingAreaController::class, 'shippingEdit'])->name('edit.shipping'); 
+    Route::post('/division/update',[ShippingAreaController::class, 'shippingUpdate'])->name('update.shipping'); 
+    Route::get('/division/delete/{id}',[ShippingAreaController::class, 'shippingDelete'])->name('delete.shipping'); 
+
+    Route::get('/district/view',[ShippingAreaController::class, 'districtView'])->name('all.district');  
+    Route::post('/district/store',[ShippingAreaController::class, 'districtStore'])->name('store.district'); 
+    Route::get('/district/edit/{id}',[ShippingAreaController::class, 'districtEdit'])->name('edit.district'); 
+    Route::post('/district/update',[ShippingAreaController::class, 'districtUpdate'])->name('update.district'); 
+    Route::get('/district/delete/{id}',[ShippingAreaController::class, 'districtDelete'])->name('delete.district'); 
+
+    Route::get('/state/view',[ShippingAreaController::class, 'stateView'])->name('all.state');  
+    Route::post('/state/store',[ShippingAreaController::class, 'stateStore'])->name('store.state'); 
+    Route::get('/state/edit/{id}',[ShippingAreaController::class, 'stateEdit'])->name('edit.state'); 
+    Route::post('/state/update',[ShippingAreaController::class, 'stateUpdate'])->name('update.state'); 
+    Route::get('/state/delete/{id}',[ShippingAreaController::class, 'stateDelete'])->name('delete.state'); 
+    Route::get('/district/ajax/{division_id}',[ShippingAreaController::class, 'getDistrict']);  
+});
+
+  
 
 //frontend router
 // language
@@ -180,9 +212,9 @@ Route::get('/user/get-mycart-product',[CartController::class, 'listMycart']);
 Route::get('/user/cart/product-remove/{id}',[CartController::class, 'removeCart']);  
 
 Route::get('/cart/increment/{rowId}',[CartController::class, 'cartIncrement']);  
-Route::get('/cart/decrement/{rowId}',[CartController::class, 'cartDecrement']);  
+Route::get('/cart/decrement/{rowId}',[CartController::class, 'cartDecrement']);
 
-
- 
-
-
+//apply coupon
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+Route::get('/coupon-calcu', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);

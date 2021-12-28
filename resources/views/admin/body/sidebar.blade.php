@@ -73,7 +73,7 @@
 
         <li class="treeview {{ ($prefix == '/slider')? 'active':'' }}">
           <a href="#">
-            <i data-feather="file"></i>
+            <i data-feather="grid"></i>
             <span>Sliders</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
@@ -83,6 +83,36 @@
             <li class="{{ ($route == 'all.slider')? 'active':'' }}"><a href="{{ route('all.slider') }}"><i class="ti-more"></i>Manage Slider</a></li>
           </ul>
         </li> 		  
+
+        <li class="treeview {{ ($prefix == '/coupon')? 'active':'' }}">
+          <a href="#">
+            <i data-feather="credit-card"></i>
+            <span>Coupon System</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'all.coupon')? 'active':'' }}"><a href="{{ route('all.coupon') }}"><i class="ti-more"></i>Manage Coupon</a></li>
+          </ul>
+        </li> 	
+        
+        <li class="treeview {{ ($prefix == '/shipping')? 'active':'' }}">
+          <a href="#">
+            <i data-feather="hard-drive"></i>
+            <span>Shipping Area</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'all.shipping')? 'active':'' }}"><a href="{{ route('all.shipping') }}"><i class="ti-more"></i>Manage Shipping</a></li>
+            <li class="{{ ($route == 'all.district')? 'active':'' }}"><a href="{{ route('all.district') }}"><i class="ti-more"></i>Manage District</a></li>
+            <li class="{{ ($route == 'all.state')? 'active':'' }}"><a href="{{ route('all.state') }}"><i class="ti-more"></i>Manage State</a></li>
+          </ul>
+        </li> 	
+
+        
 		 
         <li class="header nav-small-cap">User Interface</li>
 		  
