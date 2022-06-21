@@ -214,4 +214,36 @@ class CartController extends Controller
 
         return response()->json(['success' => 'Coupon Berhasil dihapus'] );
     }
-}
+
+    //produk cheakout
+
+    public function productCheckout()
+    {
+        if(Auth::check()){
+            if (Cart::total() > 0) {
+                
+            $carts = Cart::content();
+            $cart_qty = Cart::count();
+            $cart_total = round(Cart::total());
+
+                return view('frontend.checkout.view', compact('carts','cart_qty','cart_total'));
+            } else {
+                $notif = array(
+                    'message' => 'Need To Shopping First!',
+                    'alert-type' => 'error'
+                );
+    
+                return redirect()->to('/')->with($notif);
+            }
+            
+        }else{
+            $notif = array(
+                'message' => 'Need To Login First!',
+                'alert-type' => 'error'
+            );
+
+            return redirect()->route('login')->with($notif);
+        }
+        }
+    }
+

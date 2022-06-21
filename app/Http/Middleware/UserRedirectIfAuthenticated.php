@@ -22,7 +22,11 @@ class UserRedirectIfAuthenticated
        if (Auth::check() && Auth::user()) {
         return $next($request);   
        }else{
-        return redirect()->route('login');
+        $notif = array(
+            'message' => 'Need To Login First!',
+            'alert-type' => 'error'
+        );
+        return redirect()->route('login')->withErrors($notif);
        }
 
         

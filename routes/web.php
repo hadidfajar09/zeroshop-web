@@ -202,9 +202,11 @@ Route::post('/add-to-wishlist/{product_id}',[CartController::class, 'addToWishli
 //Product Wishlist
 Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' => 'User'], function(){
     //wishlist
+    
     Route::get('/wishlist',[WishlistController::class, 'viewWistlist'])->name('wishlist');  
     Route::get('/get-wishlist-product',[WishlistController::class, 'listWishlist']);  
     Route::get('/wishlist/product-remove/{id}',[WishlistController::class, 'removeWishlist']);  
+    
 });
 //mycart
 Route::get('/mycart',[CartController::class, 'viewMycart'])->name('mycart');  
@@ -218,3 +220,6 @@ Route::get('/cart/decrement/{rowId}',[CartController::class, 'cartDecrement']);
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 Route::get('/coupon-calcu', [CartController::class, 'CouponCalculation']);
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
+
+//Checkout
+Route::get('/checkout', [CartController::class, 'productCheckout'])->name('checkout');

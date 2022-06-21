@@ -81,14 +81,14 @@ My Cart
 
 <div class="col-md-4 col-sm-12 cart-shopping-total">
 	<table class="table">
-		<thead id="couponCalculate">
+		<thead id="couponCalculateField">
 		
 		</thead><!-- /thead -->
 		<tbody>
 				<tr>
 					<td>
 						<div class="cart-checkout-btn pull-right">
-							<button type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
+							<a href="{{ route('checkout') }}" type="submit" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</a>
 						</div>
 					</td>
 				</tr>

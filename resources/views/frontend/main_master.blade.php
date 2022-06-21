@@ -372,6 +372,7 @@ function miniCartRemove(rowId){
 
          success:function(data){
 
+
                  // Start Message 
                  const Toast = Swal.mixin({
                       toast: true,
@@ -658,7 +659,7 @@ function removeWishlist(id){
             dataType: 'json',
             success:function(data){
                if (data.total) {
-                  $('#couponCalculate').html(
+                  $('#couponCalculateField').html(
                      `<tr>
 				<th>
 					<div class="cart-sub-total">
@@ -671,7 +672,7 @@ function removeWishlist(id){
 			</tr>`
                   )
                } else {
-                  $('#couponCalculate').html(
+                  $('#couponCalculateField').html(
                      `<tr>
 				<th>
 					<div class="cart-sub-total">
