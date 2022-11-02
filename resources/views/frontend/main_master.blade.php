@@ -647,6 +647,7 @@ function removeWishlist(id){
                            icon: 'error',
                            title: data.error
                        })
+                       $('#couponField').show();
                    }
             }
          });
@@ -710,8 +711,8 @@ function removeWishlist(id){
             url: "{{ url('/coupon-remove') }}",
             dataType: 'json',
             success:function(data){
-               couponCalculate();
                $('#couponField').show();
+               couponCalculate();
                $('#coupon_name').val('');
                const Toast = Swal.mixin({
                          toast: true,

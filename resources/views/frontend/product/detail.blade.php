@@ -90,6 +90,11 @@
 
         <div id="owl-single-product">
 
+			<div class="single-product-gallery-item" id="slide10">
+                <a data-lightbox="image-1" data-title="Gallery" href="{{ asset($products->product_thumbnail) }}">
+                    <img class="img-responsive" alt="" src="{{ asset($products->product_thumbnail) }}" data-echo="{{ asset($products->product_thumbnail) }}" />
+                </a>
+            </div><!-- /.single-product-gallery-item -->
 			@foreach ($multi as $img)
 				
             <div class="single-product-gallery-item" id="slide1{{ $img->id }}">
@@ -105,7 +110,11 @@
         <div class="single-product-gallery-thumbs gallery-thumbs">
 
             <div id="owl-single-product-thumbnails">
-
+				<div class="item">
+                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide10">
+                        <img class="img-responsive" width="85" alt="" src="{{ asset($products->product_thumbnail) }}" data-echo="{{ asset($products->product_thumbnail) }}" />
+                    </a>
+                </div>
 				@foreach ($multi as $img)
 
 
@@ -200,9 +209,8 @@
 								@if ($products->product_size_en)
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label class="info-title control-label">Choose Size <span>*</span></label>
+										<label class="info-title control-label">Choose Variant <span>*</span></label>
 										<select class="form-control unicase-form-control selectpicker" style="display: none;" id="size">
-											<option selected="" disabled="">--Select Size--</option>
 											@if (session()->get('lang') == 'en') 
 											@foreach ($product_size_en as $size)
 											<option value="{{ $size }}">{{ $size }}</option>
@@ -225,7 +233,6 @@
 									<div class="form-group">
 										<label class="info-title control-label">Choose Color <span>*</span></label>
 										<select class="form-control unicase-form-control selectpicker" style="display: none;" id="color">
-											<option selected="" disabled="">--Select Color--</option>
 											@if (session()->get('lang') == 'en') 
 											@foreach ($product_color_en as $color)
 											<option value="{{ $color }}">{{ $color }}</option>
