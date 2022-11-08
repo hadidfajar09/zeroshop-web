@@ -107,19 +107,23 @@ My Checkout
 				<ul class="nav nav-checkout-progress list-unstyled">
                     @foreach ($carts as $row)
 					<li>
-                        <strong>Image : </strong>
+                        <strong>Image : </strong> &nbsp;&nbsp;
                         <img src="{{ asset($row->options->image) }}" style="height: 70px; width: 70px;" alt="">
-                    </li>
+                    </li><br>
                     <li>
                         <strong>Qty : </strong>
                          ( {{ $row->qty }} )
 
-                        <strong>Color : </strong>
-                        {{ $row->options->color }}
+						 @if ($row->options->color != NULL)
+						 <strong>Color : </strong>
+						 {{ $row->options->color }}	 
+						 @else
+						 
+						 @endif
 
                         <strong>Size : </strong>
                         {{ $row->options->size }}
-                    </li>
+                    </li><br><br>
                     @endforeach
 					<li>
                         <hr>
