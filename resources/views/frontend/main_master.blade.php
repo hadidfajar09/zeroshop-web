@@ -516,7 +516,7 @@ function removeWishlist(id){
                   ${value.qty > 1
                   ?`<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>`
                   :
-                  ` <button type="submit" class="btn btn-danger btn-sm" disabled="">-</button>      `
+                  `<button type="submit" class="btn btn-danger btn-sm" disabled="">-</button>`
             }
 
              
@@ -537,7 +537,7 @@ function removeWishlist(id){
    
             $('#mycart').html(rows);
          }
-      });
+      })
    }
    mycart();
    
