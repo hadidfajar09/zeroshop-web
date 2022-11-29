@@ -139,8 +139,8 @@ My Checkout
                         @if (Session::has('coupon'))
                             <strong>Sub Total : </strong> Rp. {{ $cart_total }} <br>
                             <strong>Coupon Name : </strong> {{ Session::get('coupon')['coupon_name'] }}
-                            ({{ Session()->get('coupon')['coupon_discount'] }} %)
-                            <strong>Coupon Discount : </strong> Rp. {{ Session::get('coupon')['discount_amount'] }}
+                            ({{ Session()->get('coupon')['coupon_discount'] }} %) <br>
+                            <strong>Coupon Discount : </strong> Rp. {{ Session::get('coupon')['discount_amount'] }} <br>
                             <strong>Grand Total : </strong> Rp. {{ Session::get('coupon')['total_amount'] }}
                             <hr>
                         @else
