@@ -17,6 +17,7 @@ My Checkout
 	</div><!-- /.container -->
 </div><!-- /.breadcrumb -->
 
+
 <div class="body-content">
 	<div class="container">
 		<div class="checkout-box ">
@@ -40,24 +41,24 @@ My Checkout
 					<h4 class="checkout-subtitle"><b>Data Pemesanan</b> </h4>
 					<form class="register-form" role="form">
 						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Nama Pemesan<span>*</span></label>
+					    <label class="info-title" for="exampleInputEmail1"><b>Nama Pemesan</b> <span>*</span></label>
 					    <input type="text" class="form-control unicase-form-control text-input" name="name" placeholder="Nama Anda" value="{{ Auth::user()->name }}">
 					  </div>
 
 					  <div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Email<span>*</span></label>
+					    <label class="info-title" for="exampleInputEmail1"><b>Email</b> <span>*</span></label>
 					    <input type="email" class="form-control unicase-form-control text-input" name="email" placeholder="Email Anda" value="{{ Auth::user()->email }}">
 					  </div>
 
 					  <div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Nomor Handphone<span>*</span></label>
-					    <input type="number" class="form-control unicase-form-control text-input" name="code_post" placeholder="Nomor Handphone" value="{{ Auth::user()->phone }}">
+					    <label class="info-title" for="exampleInputEmail1"><b>Nomor Handphone</b> <span>*</span></label>
+					    <input type="text" class="form-control unicase-form-control text-input" name="code_post" placeholder="Nomor Handphone" value="{{ Auth::user()->phone }}">
 					  </div>
 
 
 					
 					 
-					</form>
+					
 				</div>	
 				
 				<!-- guest-login -->			
@@ -66,26 +67,56 @@ My Checkout
 					
 
 					<!-- radio-form  -->
-					<form class="register-form" role="form">
-					    <div class="radio radio-checkout-unicase">  
-					        <input id="guest" type="radio" name="text" value="guest" checked>  
-					        <label class="radio-button guest-check" for="guest">Checkout as Guest</label>  
-					          <br>
-					        <input id="register" type="radio" name="text" value="register">  
-					        <label class="radio-button" for="register">Register</label>  
-					    </div>  
-					</form>
-					<!-- radio-form  -->
+					<div class="form-group">
+						<h5><b>Divicion</b> <span class="text-danger">*</span></h5>
+						<div class="controls">
+						  <select name="division_id" class="form-control" aria-invalid="false" required="">
+							<option value="" selected="" disabled>Select Divicion</option>
+							@foreach ($division as $row)
+								<option value="{{ $row->id }}">{{ $row->division_name }}</option>
+							@endforeach
+						  </select>
+							@error('division_id')
+							<span class="text-danger">{{ $message }}</span>
+							@enderror
+						</div>
+					</div>
 
-					<h4 class="checkout-subtitle outer-top-vs">Register and save time</h4>
-					
-					
-					<ul class="text instruction inner-bottom-30">
-						<li class="save-time-reg">- Fast and easy check out</li>
-						<li>- Easy access to your order history and status</li>
-					</ul>
+					<div class="form-group">
+						<h5><b>District</b> <span class="text-danger">*</span></h5>
+						<div class="controls">
+						  <select name="district_id" class="form-control" aria-invalid="false" required="">
+							<option value="" selected="" disabled>Select District</option>
+						  </select>
+							@error('district_id')
+							<span class="text-danger">{{ $message }}</span>
+							@enderror
+						</div>
+					</div>
+
+					<div class="form-group">
+						<h5><b>State</b> <span class="text-danger">*</span></h5>
+						<div class="controls">
+						  <select name="state_id" class="form-control" aria-invalid="false" required="">
+							<option value="" selected="" disabled>Select State</option>
+													  </select>
+							@error('state_id')
+							<span class="text-danger">{{ $message }}</span>
+							@enderror
+						</div>
+					</div>
+
+					<div class="form-group">
+					    <label class="info-title" for="exampleInputEmail1">Alamat Lengkap<span>*</span></label>
+						<textarea class="form-control unicase-form-control text-input" name="notes" id="" cols="30" rows="5" required></textarea>
+						@error('notes')
+							<span class="text-danger">{{ $message }}</span>
+							@enderror
+					  </div>
 
 					<button type="submit" class="btn-upper btn btn-primary checkout-page-button checkout-continue ">Continue</button>
+
+				</form>
 				</div>
 				<!-- guest-login -->
 
@@ -132,7 +163,7 @@ My Checkout
 
                         <strong>Size : </strong>
                         {{ $row->options->size }}
-                    </li><br><br>
+                    </li><br>
                     @endforeach
 					<li>
                         <hr>
@@ -140,6 +171,7 @@ My Checkout
                             <strong>Sub Total : </strong> Rp. {{ $cart_total }} <br>
                             <strong>Coupon Name : </strong> {{ Session::get('coupon')['coupon_name'] }}
                             ({{ Session()->get('coupon')['coupon_discount'] }} %)
+							<br>
                             <strong>Coupon Discount : </strong> Rp. {{ Session::get('coupon')['discount_amount'] }}
                             <strong>Grand Total : </strong> Rp. {{ Session::get('coupon')['total_amount'] }}
                             <hr>
