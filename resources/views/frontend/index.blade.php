@@ -239,7 +239,7 @@
                 <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a></li>
 
                 @php
-                           $categories = App\Models\Category::orderBy('category_name_ind','asc')->limit(4)->get();
+                           $categories = App\Models\Category::orderBy('category_name_ind','asc')->limit(5)->get();
                 @endphp
                 @foreach ($categories as $category)
                 <li><a data-transition-type="backSlide" href="#category{{ $category->id }}" data-toggle="tab">
