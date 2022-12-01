@@ -197,6 +197,10 @@ Route::get('/minicart/product-remove/{rowId}',[CartController::class, 'removeMin
 
 //Product MIni Cart DELETE ajax
 Route::post('/add-to-wishlist/{product_id}',[CartController::class, 'addToWishlist']);  
+
+//get district dan state checkout
+Route::get('/division/district/ajax/{division_id}',[CartController::class, 'getDestrict']);  
+Route::get('/division/state/ajax/{district_id}',[CartController::class, 'getState']);  
     
 
 //Product Wishlist

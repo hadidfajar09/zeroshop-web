@@ -46,7 +46,7 @@
 				<div class="p-20">
 					<div class="flexbox">
 						<div>
-							<h4 class="mb-0 mt-0">Notifications</h4>
+							<h4 class="mb-0 mt-0">HALO</h4>
 						</div>
 						<div>
 							<a href="#" class="text-danger">Clear All</a>

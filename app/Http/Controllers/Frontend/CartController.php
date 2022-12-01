@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Models\Product;
+use App\Models\ShipDistrict;
+use App\Models\Shipping;
+use App\Models\ShipState;
 use App\Models\Wistlist;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -226,7 +229,9 @@ class CartController extends Controller
             $cart_qty = Cart::count();
             $cart_total = round(Cart::total());
 
-                return view('frontend.checkout.view', compact('carts','cart_qty','cart_total'));
+            $division = Shipping::orderBy('division_name', 'asc')->get(); 
+
+                return view('frontend.checkout.view', compact('carts','cart_qty','cart_total','division'));
             } else {
                 $notif = array(
                     'message' => 'Need To Shopping First!',
@@ -244,6 +249,20 @@ class CartController extends Controller
 
             return redirect()->route('login')->with($notif);
         }
+        }
+
+        public function getDestrict($division_id)
+        {
+            $district = ShipDistrict::where('division_id',$division_id)->orderBy('district_name','asc')->get();
+
+            return json_encode($district);
+        }
+
+        public function getState($district_id)
+        {
+            $state = ShipState::where('district_id',$district_id)->orderBy('state_name','asc')->get();
+
+            return json_encode($state);
         }
     }
 
