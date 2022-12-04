@@ -251,18 +251,6 @@ class CartController extends Controller
         }
         }
 
-        public function getDestrict($division_id)
-        {
-            $district = ShipDistrict::where('division_id',$division_id)->orderBy('district_name','asc')->get();
-
-            return json_encode($district);
-        }
-
-        public function getState($district_id)
-        {
-            $state = ShipState::where('district_id',$district_id)->orderBy('state_name','asc')->get();
-
-            return json_encode($state);
-        }
+        
     }
 

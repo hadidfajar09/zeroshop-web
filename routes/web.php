@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -199,8 +200,8 @@ Route::get('/minicart/product-remove/{rowId}',[CartController::class, 'removeMin
 Route::post('/add-to-wishlist/{product_id}',[CartController::class, 'addToWishlist']);  
 
 //get district dan state checkout
-Route::get('/division/district/ajax/{division_id}',[CartController::class, 'getDestrict']);  
-Route::get('/division/state/ajax/{district_id}',[CartController::class, 'getState']);  
+Route::get('/division/district/ajax/{division_id}',[CheckoutController::class, 'getDestrict']);  
+Route::get('/division/state/ajax/{district_id}',[CheckoutController::class, 'getState']);  
     
 
 //Product Wishlist
@@ -227,3 +228,4 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 //Checkout
 Route::get('/checkout', [CartController::class, 'productCheckout'])->name('checkout');
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');

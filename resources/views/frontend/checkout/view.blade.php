@@ -39,20 +39,23 @@ My Checkout
 
 				<div class="col-md-6 col-sm-6 already-registered-login">
 					<h4 class="checkout-subtitle"><b>Data Pemesanan</b> </h4>
-					<form class="register-form" role="form">
+
+
+					<form class="register-form" action="{{ route('checkout.store') }}" role="form" method="post">
+						@csrf
 						<div class="form-group">
 					    <label class="info-title" for="exampleInputEmail1"><b>Nama Pemesan</b> <span>*</span></label>
-					    <input type="text" class="form-control unicase-form-control text-input" name="name" placeholder="Nama Anda" value="{{ Auth::user()->name }}">
+					    <input type="text" class="form-control unicase-form-control text-input" name="name" placeholder="Nama Anda" required value="{{ Auth::user()->name }}">
 					  </div>
 
 					  <div class="form-group">
 					    <label class="info-title" for="exampleInputEmail1"><b>Email</b> <span>*</span></label>
-					    <input type="email" class="form-control unicase-form-control text-input" name="email" placeholder="Email Anda" value="{{ Auth::user()->email }}">
+					    <input type="email" class="form-control unicase-form-control text-input" name="email" placeholder="Email Anda" required value="{{ Auth::user()->email }}">
 					  </div>
 
 					  <div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1"><b>Nomor Handphone</b> <span>*</span></label>
-					    <input type="text" class="form-control unicase-form-control text-input" name="code_post" placeholder="Nomor Handphone" value="{{ Auth::user()->phone }}">
+					    <label class="info-title" for="exampleInputEmail1"><b>Nomor HP</b> <span>*</span></label>
+					    <input type="number" class="form-control unicase-form-control text-input" name="code_post" placeholder="Nomor Handphone" required value="{{ Auth::user()->phone }}">
 					  </div>
 
 
@@ -114,9 +117,9 @@ My Checkout
 							@enderror
 					  </div>
 
-					<button type="submit" class="btn-upper btn btn-primary checkout-page-button checkout-continue ">Continue</button>
+				
 
-				</form>
+				
 				</div>
 				<!-- guest-login -->
 
@@ -147,23 +150,28 @@ My Checkout
 				<ul class="nav nav-checkout-progress list-unstyled">
                     @foreach ($carts as $row)
 					<li>
-                        <strong>Image : </strong> &nbsp;&nbsp;
-                        <img src="{{ asset($row->options->image) }}" style="height: 70px; width: 70px;" alt="">
-                    </li><br>
-                    <li>
-                        <strong>Qty : </strong>
-                         ( {{ $row->qty }} )
+                        <img src="{{ asset($row->options->image) }}" style="height: 80px; width: 80px; float: left; margin-right: 8px;" alt="">  &nbsp;&nbsp;
+						<h6>{{ $row->name }}</h6>
+						<strong>Qty : </strong>
+						( {{ $row->qty }} )
 
-						 @if ($row->options->color != NULL)
-						 <strong>Color : </strong>
-						 {{ $row->options->color }}	 
-						 @else
-						 
-						 @endif
+						@if ($row->options->color != NULL)
+						<strong>Warna : </strong>
+						{{ $row->options->color }}	 
+						@else
+						
+						@endif
 
-                        <strong>Size : </strong>
-                        {{ $row->options->size }}
-                    </li><br>
+						@if ($row->options->size != NULL)
+						<strong>Size : </strong>
+						{{ $row->options->size }}	 
+						@else
+						
+						@endif
+
+                    </li>
+					<br>
+                    
                     @endforeach
 					<li>
                         <hr>
@@ -174,10 +182,10 @@ My Checkout
                             <strong>Coupon Discount : </strong> Rp. {{ Session::get('coupon')['discount_amount'] }} <br>
 
                             <strong>Grand Total : </strong> Rp. {{ Session::get('coupon')['total_amount'] }}
-                            <hr>
+                            
                         @else
                         <strong>Sub Total : </strong> Rp. {{ $cart_total }} <br>
-                        <strong>Grand Total : </strong> Rp. {{ $cart_total }} <hr>
+                        <strong>Grand Total : </strong> Rp. {{ $cart_total }}
                         @endif
                     </li>
 		
@@ -188,6 +196,48 @@ My Checkout
 	</div>
 </div> 
 <!-- checkout-progress-sidebar -->				</div>
+
+
+
+<div class="col-md-4">
+	<!-- checkout-progress-sidebar -->
+<div class="checkout-progress-sidebar ">
+<div class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="unicase-checkout-title">Metode Pembayaran</h4>
+</div>
+
+
+<div class="row">
+	<div class="col-md-4">
+		<input id="register" type="radio" name="payment_method" value="stripe">  
+		<label for="">Stripe</label>
+		<img src="{{ asset('frontend/assets/images/payments/8.png') }}" width="45">
+	</div>
+	<div class="col-md-4">
+		<input id="register" type="radio" name="payment_method" value="transfer">  
+		<label for="">Bank</label>
+		<img src="{{ asset('frontend/assets/images/payments/9.png') }}" width="45">
+	</div>
+	<div class="col-md-4">
+		<input id="register" type="radio" name="payment_method" value="cod">  
+		<label for="">Cash</label>
+		<img src="{{ asset('frontend/assets/images/payments/7.png') }}" width="45">
+	</div>
+</div>
+
+
+<hr>
+<button type="submit" class="btn-upper btn btn-primary checkout-page-button checkout-continue ">Continue</button>
+
+</form>
+
+</div>
+</div>
+</div> 
+<!-- checkout-progress-sidebar -->				
+</div>
 			</div><!-- /.row -->
 		</div><!-- /.checkout-box -->
 		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
