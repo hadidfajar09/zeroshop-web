@@ -175,18 +175,46 @@ My Checkout
                     @endforeach
 					<li>
                         <hr>
-                        @if (Session::has('coupon'))
-                            <strong>Sub Total : </strong> Rp. {{ $cart_total }} <br>
-                            <strong>Coupon Name : </strong> {{ Session::get('coupon')['coupon_name'] }}
-                            ({{ Session()->get('coupon')['coupon_discount'] }} %) <br>
-                            <strong>Coupon Discount : </strong> Rp. {{ Session::get('coupon')['discount_amount'] }} <br>
-
-                            <strong>Grand Total : </strong> Rp. {{ Session::get('coupon')['total_amount'] }}
-                            
-                        @else
-                        <strong>Sub Total : </strong> Rp. {{ $cart_total }} <br>
-                        <strong>Grand Total : </strong> Rp. {{ $cart_total }}
-                        @endif
+						@if (Session::has('coupon'))
+						<table>
+							<tr>
+								<td><strong>Sub Total </strong> </td>
+								<td>:&nbsp;&nbsp;</td>
+								<td>Rp. {{ $cart_total }}</td>
+							</tr>
+							<tr>
+								<td><strong>Coupon Name  </strong> </td>
+								<td>:&nbsp;&nbsp;</td>
+								<td>{{ Session::get('coupon')['coupon_name'] }}
+									({{ Session()->get('coupon')['coupon_discount'] }} %)</td>
+							</tr>
+							<tr>
+								<td><strong>Coupon Discount  </strong> </td>
+								<td>:&nbsp;&nbsp;</td>
+								<td>Rp. {{ Session::get('coupon')['discount_amount'] }}</td>
+							</tr>
+							<tr>
+								<td><strong>Grand Total  </strong> </td>
+								<td>:&nbsp;&nbsp;</td>
+								<td>Rp. {{ Session::get('coupon')['total_amount'] }}</td>
+							</tr>
+							
+						</table>
+					@else
+					<table>
+						<tr>
+							<td><strong>Sub Total </strong> </td>
+							<td>: &nbsp;&nbsp;</td>
+							<td>Rp. {{ $cart_total }}</td>
+						</tr>
+						<tr>
+							<td><strong>Grand Total </strong> </td>
+							<td>:&nbsp;&nbsp;</td>
+							<td>Rp. {{ $cart_total }}</td>
+						</tr>
+						
+					</table>
+					@endif
                     </li>
 		
 
