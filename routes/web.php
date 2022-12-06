@@ -211,7 +211,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' =
     Route::get('/wishlist',[WishlistController::class, 'viewWistlist'])->name('wishlist');  
     Route::get('/get-wishlist-product',[WishlistController::class, 'listWishlist']);  
     Route::get('/wishlist/product-remove/{id}',[WishlistController::class, 'removeWishlist']);  
-    
+    Route::post('/stripe/checkout',[CheckoutController::class, 'StripeOrder'])->name('stripe.store');  
 });
 //mycart
 Route::get('/mycart',[CartController::class, 'viewMycart'])->name('mycart');  
