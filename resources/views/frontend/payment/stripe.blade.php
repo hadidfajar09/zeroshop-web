@@ -85,7 +85,6 @@ Stripe Payment
                                     <td>:</td>
                                     <td>Rp. {{ Session::get('coupon')['total_amount'] }}</td>
                                 </tr>
-                                
                             </table>
                         @else
                         <table class="table table=responsive">
@@ -153,7 +152,7 @@ Credit or debit card
 <!-- /.logo-slider -->
 <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
 </div><!-- /.body-content -->
-
+<script src="https://js.stripe.com/v3/"></script>
 
 <script type="text/javascript">
     // Create a Stripe client.
