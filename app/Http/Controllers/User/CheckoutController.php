@@ -7,6 +7,7 @@ use App\Models\ShipDistrict;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\Session\Session;
 
 class CheckoutController extends Controller
 {
@@ -48,8 +49,16 @@ class CheckoutController extends Controller
 
         }
 
+
         public function StripeOrder(Request $request)
         {
+
+            if(Session::has('coupon')){
+                $total = Session::get('coupon')['total_amount'];
+            }else{
+                $total = round(Cart::total());
+            }
+
             \Stripe\Stripe::setApiKey('sk_test_51MBCT4LRyAGjJ7domtPwWIEBUbjsJJJySlg4QJL0gy8pVN0256r6o3F2s4TwrXsC7BWjx1Bzl1dEfecKsJVA3POt00MtV8IUpO');
 
 
