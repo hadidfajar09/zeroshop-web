@@ -688,6 +688,7 @@ function removeWishlist(id){
 					</div>
                <div class="cart-sub-total">
 						Discount<span class="inner-left-md">Rp.${data.discount_amount}</span>
+						Discount<span class="inner-left-md">Rp.${data.discount_amount}</span>
 					</div>
 
 					<div class="cart-grand-total">

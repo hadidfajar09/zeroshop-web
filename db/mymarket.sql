@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2023 at 04:44 PM
+-- Generation Time: Mar 10, 2023 at 04:10 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 7.4.30
 
@@ -217,11 +217,11 @@ CREATE TABLE `orders` (
   `division_id` bigint(20) UNSIGNED NOT NULL,
   `district_id` bigint(20) UNSIGNED NOT NULL,
   `state_id` bigint(20) UNSIGNED NOT NULL,
+  `code_post` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` int(11) NOT NULL,
   `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `post_code` int(11) DEFAULT NULL,
   `payment_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `payment_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `transaction_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -361,7 +361,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('9cKMaL9JBjvBDTq3ATpv650PSyttQnHCkcezcnZV', 20, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36', 'YTo4OntzOjY6Il90b2tlbiI7czo0MDoiQ3F6VEdLck92QURyWndTU3RvaG1MU2dhbk1ZckxrVDBvUmxSeHY2TCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaGVja291dCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjIwO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkdG0vM2o5eC9kWHFVY0RjYlpsYkNKLlpvTzhPQktIcmtDL2doRzBkeXNxcFZpaEZldk5OcC4iO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJHRtLzNqOXgvZFhxVWNEY2JabGJDSi5ab084T0JLSHJrQy9naEcwZHlzcXBWaWhGZXZOTnAuIjtzOjQ6ImNhcnQiO2E6MTp7czo3OiJkZWZhdWx0IjtPOjI5OiJJbGx1bWluYXRlXFN1cHBvcnRcQ29sbGVjdGlvbiI6Mjp7czo4OiIAKgBpdGVtcyI7YToyOntzOjMyOiI3MmQzODJiNjkyOGYwNjM1ZmM1OGNjYzgwYmZjOGM3MCI7TzozMjoiR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0iOjExOntzOjU6InJvd0lkIjtzOjMyOiI3MmQzODJiNjkyOGYwNjM1ZmM1OGNjYzgwYmZjOGM3MCI7czoyOiJpZCI7czoxOiIxIjtzOjM6InF0eSI7czoxOiIyIjtzOjQ6Im5hbWUiO3M6MTM6IkRpYW1vbmQgTXVyYWgiO3M6NToicHJpY2UiO2Q6NDkwMDA7czo2OiJ3ZWlnaHQiO2Q6MTtzOjc6Im9wdGlvbnMiO086Mzk6Ikdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtT3B0aW9ucyI6Mjp7czo4OiIAKgBpdGVtcyI7YTozOntzOjU6ImltYWdlIjtzOjQ1OiJ1cGxvYWQvcHJvZHVjdC90aHVtYm5haWwvMTcyMDAxMjU2NjY3NzAwNS5qcGciO3M6NToiY29sb3IiO047czo0OiJzaXplIjtzOjQ6IjEwZG0iO31zOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7fXM6NzoidGF4UmF0ZSI7aTowO3M6NDk6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBhc3NvY2lhdGVkTW9kZWwiO047czo0NjoiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGRpc2NvdW50UmF0ZSI7aTowO3M6ODoiaW5zdGFuY2UiO3M6NzoiZGVmYXVsdCI7fXM6MzI6IjgzMGVhZjM2ZmQ5YjFiYWE5NDk1N2ZjMTVkMDhkNjg5IjtPOjMyOiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbSI6MTE6e3M6NToicm93SWQiO3M6MzI6IjgzMGVhZjM2ZmQ5YjFiYWE5NDk1N2ZjMTVkMDhkNjg5IjtzOjI6ImlkIjtzOjE6IjIiO3M6MzoicXR5IjtzOjE6IjEiO3M6NDoibmFtZSI7czo1NjoiWU9ORVggTkFOT1JBWSA3MCBMSUdIVCBSVURZIEhBUlRPTk8gUkFLRVQgQkFETUlOVE9OIEFTTEkiO3M6NToicHJpY2UiO2Q6NDAwMDAwO3M6Njoid2VpZ2h0IjtkOjE7czo3OiJvcHRpb25zIjtPOjM5OiJHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbU9wdGlvbnMiOjI6e3M6ODoiACoAaXRlbXMiO2E6Mzp7czo1OiJpbWFnZSI7czo0NToidXBsb2FkL3Byb2R1Y3QvdGh1bWJuYWlsLzE3MjAwMTg0MDU3ODQyNzcuanBnIjtzOjU6ImNvbG9yIjtzOjU6IkhpdGFtIjtzOjQ6InNpemUiO3M6ODoiQXJjc2FiZXIiO31zOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7fXM6NzoidGF4UmF0ZSI7aTowO3M6NDk6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBhc3NvY2lhdGVkTW9kZWwiO047czo0NjoiAEdsb3VkZW1hbnNcU2hvcHBpbmdjYXJ0XENhcnRJdGVtAGRpc2NvdW50UmF0ZSI7aTowO3M6ODoiaW5zdGFuY2UiO3M6NzoiZGVmYXVsdCI7fX1zOjI4OiIAKgBlc2NhcGVXaGVuQ2FzdGluZ1RvU3RyaW5nIjtiOjA7fX1zOjUyOiJsb2dpbl9hZG1pbl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjM7fQ==', 1675662147);
+('apzqwWMM9XJUWcfWKBV8XjAHwctbWMOEz4aL38zm', 20, '127.0.0.1', 'Mozilla/5.0 (Linux; U; Android 4.3; en-us; SM-N900T Build/JSS15J) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30', 'YTo4OntzOjY6Il90b2tlbiI7czo0MDoiQ3R6WkRkSml0aHRXMVFqYmF5d2RyUmlVUDExclBlYzRKRjVNcFM5MCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaGVja291dCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjIwO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkdG0vM2o5eC9kWHFVY0RjYlpsYkNKLlpvTzhPQktIcmtDL2doRzBkeXNxcFZpaEZldk5OcC4iO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJHRtLzNqOXgvZFhxVWNEY2JabGJDSi5ab084T0JLSHJrQy9naEcwZHlzcXBWaWhGZXZOTnAuIjtzOjQ6ImNhcnQiO2E6MTp7czo3OiJkZWZhdWx0IjtPOjI5OiJJbGx1bWluYXRlXFN1cHBvcnRcQ29sbGVjdGlvbiI6Mjp7czo4OiIAKgBpdGVtcyI7YToxOntzOjMyOiI4MzBlYWYzNmZkOWIxYmFhOTQ5NTdmYzE1ZDA4ZDY4OSI7TzozMjoiR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0iOjExOntzOjU6InJvd0lkIjtzOjMyOiI4MzBlYWYzNmZkOWIxYmFhOTQ5NTdmYzE1ZDA4ZDY4OSI7czoyOiJpZCI7czoxOiIyIjtzOjM6InF0eSI7czoxOiIxIjtzOjQ6Im5hbWUiO3M6NTY6IllPTkVYIE5BTk9SQVkgNzAgTElHSFQgUlVEWSBIQVJUT05PIFJBS0VUIEJBRE1JTlRPTiBBU0xJIjtzOjU6InByaWNlIjtkOjQwMDAwMDtzOjY6IndlaWdodCI7ZDoxO3M6Nzoib3B0aW9ucyI7TzozOToiR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW1PcHRpb25zIjoyOntzOjg6IgAqAGl0ZW1zIjthOjM6e3M6NToiaW1hZ2UiO3M6NDU6InVwbG9hZC9wcm9kdWN0L3RodW1ibmFpbC8xNzIwMDE4NDA1Nzg0Mjc3LmpwZyI7czo1OiJjb2xvciI7czo1OiJIaXRhbSI7czo0OiJzaXplIjtzOjg6IkFyY3NhYmVyIjt9czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO31zOjc6InRheFJhdGUiO2k6MDtzOjQ5OiIAR2xvdWRlbWFuc1xTaG9wcGluZ2NhcnRcQ2FydEl0ZW0AYXNzb2NpYXRlZE1vZGVsIjtOO3M6NDY6IgBHbG91ZGVtYW5zXFNob3BwaW5nY2FydFxDYXJ0SXRlbQBkaXNjb3VudFJhdGUiO2k6MDtzOjg6Imluc3RhbmNlIjtzOjc6ImRlZmF1bHQiO319czoyODoiACoAZXNjYXBlV2hlbkNhc3RpbmdUb1N0cmluZyI7YjowO319czo1MjoibG9naW5fYWRtaW5fNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO30=', 1676643822),
+('lFMrkdJIOAJ0roEmRh4KlzKTiYHkXdEd5mAre88l', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVlJHUFVtNjBZazlKNkFVR21YMUROeHpQRklNVmYzNUNwWGltNmRtcyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9kYXNoYm9hcmQiO319', 1676651559),
+('xyLa5cXz0SPHMvUmxYqcG6SkyURQJwYRHn9q40uy', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidlc4cHVnWGk5UFZkb2NhcUJyejUzaERhSHBZTEJaUm9NaGJTbWlISyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1676676632);
 
 -- --------------------------------------------------------
 
@@ -381,7 +383,8 @@ CREATE TABLE `shippings` (
 --
 
 INSERT INTO `shippings` (`id`, `division_name`, `created_at`, `updated_at`) VALUES
-(1, 'Sulawesi Selatan', '2021-12-25 07:32:46', NULL);
+(1, 'Sulawesi Selatan', '2021-12-25 07:32:46', NULL),
+(2, 'Sulawesi Tengah', '2023-02-17 07:08:09', NULL);
 
 -- --------------------------------------------------------
 
@@ -423,7 +426,9 @@ CREATE TABLE `ship_districts` (
 
 INSERT INTO `ship_districts` (`id`, `division_id`, `district_name`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Makassar', '2021-12-25 07:33:01', NULL),
-(2, 1, 'Gowa', '2021-12-25 12:18:32', NULL);
+(2, 1, 'Gowa', '2021-12-25 12:18:32', NULL),
+(3, 2, 'Palu', '2023-02-17 07:08:21', NULL),
+(4, 2, 'Morowali', '2023-02-17 07:08:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -448,7 +453,9 @@ INSERT INTO `ship_states` (`id`, `division_id`, `district_id`, `state_name`, `cr
 (2, 1, 2, 'Limbung', NULL, '2021-12-25 15:22:22'),
 (3, 1, 1, 'Tamalate', '2021-12-25 13:14:06', NULL),
 (4, 1, 1, 'Talasapang', '2021-12-25 15:30:25', '2022-03-22 22:52:42'),
-(5, 1, 2, 'Pallangga', '2021-12-25 15:30:37', NULL);
+(5, 1, 2, 'Pallangga', '2021-12-25 15:30:37', NULL),
+(7, 2, 3, 'Palukka', '2023-02-17 07:08:45', NULL),
+(8, 2, 4, 'Bungku Tengah', '2023-02-17 07:08:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -802,7 +809,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `shippings`
 --
 ALTER TABLE `shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shipping_addresses`
@@ -814,13 +821,13 @@ ALTER TABLE `shipping_addresses`
 -- AUTO_INCREMENT for table `ship_districts`
 --
 ALTER TABLE `ship_districts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ship_states`
 --
 ALTER TABLE `ship_states`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `sliders`

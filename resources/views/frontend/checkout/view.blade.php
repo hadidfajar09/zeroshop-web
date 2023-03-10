@@ -239,7 +239,7 @@ My Checkout
 
 <div class="row">
 	<div class="col-md-4">
-		<input id="register" type="radio" name="payment_method" value="stripe">  
+		<input id="register" type="radio" name="payment_method" required value="stripe">  
 		<label for="">Stripe</label>
 		<img src="{{ asset('frontend/assets/images/payments/8.png') }}" width="45">
 	</div>
