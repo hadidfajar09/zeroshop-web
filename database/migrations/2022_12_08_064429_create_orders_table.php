@@ -21,13 +21,13 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('state_id');
             $table->string('name');
             $table->string('email');
-            $table->integer('phone');
+            $table->string('phone');
             $table->text('notes')->nullable();
-            $table->integer('code_post')->nullable();
+            $table->string('code_post')->nullable();
             $table->string('payment_type');
             $table->string('payment_method')->nullable();
             $table->string('transaction_id');
-            $table->integer('currency');
+            $table->string('currency');
             $table->float('amount',8,2);
             $table->string('order_number');
             $table->string('invoice_no');

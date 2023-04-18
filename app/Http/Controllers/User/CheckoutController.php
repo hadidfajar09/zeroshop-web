@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
@@ -34,7 +35,7 @@ class CheckoutController extends Controller
 
             $data['name'] = $request->name;
             $data['email'] = $request->email;
-            $data['code_post'] = $request->code_post; //no hp
+            $data['code_post'] = $request->code_post;
             $data['division_id'] = $request->division_id;
             $data['district_id'] = $request->district_id;
             $data['state_id'] = $request->state_id;
@@ -74,7 +75,7 @@ class CheckoutController extends Controller
 	  'metadata' => ['order_id' => uniqid()],
 	]);
 
-    $order_id = Order::insertGetId([
+    $order_id = order::insertGetId([
         'user_id' => Auth::id(),
         'division_id' => $request->division_id,
         'district_id' => $request->district_id,
@@ -88,23 +89,42 @@ class CheckoutController extends Controller
         'payment_method' => $charge->payment_method,
         'transaction_id' => $charge->balance_transaction,   
         'currency' => $charge->currency,
-        'amount'  => $charge->amount,
-        'order_number'
-        'invoice_no'
-        'order_date'
-        'order_month'
-        'order_year'
-        'confirmed_date'
-        'processing_date'
-        'picked_date'
-        'shipped_date'
-        'delivered_date'
-        'cancel_date'
-        'return_date'
-        'return_reason'
-        'status'
-
+        'amount'  => $total_amount,
+        'order_number' => $charge->metadata->order_id,
+        'invoice_no' => 'ZS'.mt_rand(10000000,99999999),
+        'order_date' => Carbon::now()->format('d F Y'),
+        'order_month' => Carbon::now()->format('F'),
+        'order_year' => Carbon::now()->format('Y'),
+        'status' => 'Pending',
+        'created_at' => Carbon::now()
     ]);
+
+    $carts = Cart::content();
+
+    foreach ($carts as $cart) {
+        order_item::insert([
+            'order_id' => $order_id,
+            'product_id' => $cart->id,
+            'color' => $cart->options->color,
+            'size' => $cart->options->size,
+            'qty' => $cart->qty,
+            'price' => $cart->price,
+            'created_at' => Carbon::now()
+        ]);
+    }
+
+    if(Session::has('coupon')){
+        Session::forget('coupon');
+    }
+
+    Cart::destroy();
+
+    $notif = array(
+        'message' => 'Berhasil Order Produk',
+        'alert-type' => 'success'
+    );
+
+    return redirect()->route('dashboard')->with($notif);
 
 }
 }

@@ -44,7 +44,7 @@ Log In & Register
 		</div>
 		<div class="radio outer-xs">
 		  	<label>
-		    	<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Remember me!
+		    	<input type="radio" name="remember" id="remember" value="option2">Remember me!
 		  	</label>
 		  	<a href="{{ route('password.request') }}" class="forgot-password pull-right">Forgot your Password?</a>
 		</div>
