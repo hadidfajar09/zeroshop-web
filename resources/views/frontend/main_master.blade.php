@@ -629,7 +629,9 @@ function removeWishlist(id){
             url: "{{ url('/coupon-apply') }}",
             success:function(data){
                couponCalculate();
-               $('#couponField').hide();
+               if(data.validity == true){
+                  $('#couponField').hide();
+               }
                $('#coupon_name').val('');
                const Toast = Swal.mixin({
                          toast: true,
